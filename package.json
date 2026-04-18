@@ -105,6 +105,7 @@
     "smol-toml": "^1.6.1",
     "strip-json-comments": "^5.0.3",
     "synckit": "^0.11.12",
+    "telegraf": "^4.16.3",
     "tinyglobby": "^0.2.16",
     "to-regex-range": "^5.0.1",
     "ts-api-utils": "^2.5.0",
