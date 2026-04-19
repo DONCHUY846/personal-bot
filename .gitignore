@@ -52,3 +52,6 @@ coverage/
 
 # personales notes
 personal-notes/
+
+#Rules
+.trae/*
