@@ -1,3 +1,4 @@
+// Format date to string
 export function formatDate(date: Date | number): string {
   const d = new Date(date);
   return d.toLocaleString('es-ES', {
