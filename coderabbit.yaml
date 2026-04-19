@@ -1,0 +1,6 @@
+language: "en" 
+reviews:
+  profile: "assertive" 
+  auto_review: true
+chat:
+  enabled: true 
