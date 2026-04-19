@@ -19,7 +19,7 @@ let botInstance: Telegraf<MyContext> | undefined;
  * @example
  * ```typescript
  * const bot = createBotInstance();
- * await bot.launch();
+ * await bot.launch();.
  * ```
  */
 export const createBotInstance = (): Telegraf<MyContext> => {
