@@ -1,16 +1,23 @@
 import { z } from 'zod';
 
+const nonBlankString = z.string().refine((value) => value.trim().length > 0, {
+  message: 'Required',
+});
+
 const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
   PORT: z
     .string()
+    .regex(/^\d+$/, { message: 'PORT must be an integer between 1 and 65535' })
     .transform(Number)
-    .refine((n) => n > 0, { message: 'PORT must be a positive number' })
+    .refine((n) => n >= 1 && n <= 65535, {
+      message: 'PORT must be an integer between 1 and 65535',
+    })
     .optional(),
   DATABASE_URL: z.string().url().optional(),
-  JWT_SECRET: z.string().min(1).optional(),
-  API_KEY: z.string().min(1).optional(),
-  BOT_TOKEN: z.string().min(1),
+  JWT_SECRET: nonBlankString.optional(),
+  API_KEY: nonBlankString.optional(),
+  BOT_TOKEN: nonBlankString,
 });
 
 const parsedEnv = envSchema.safeParse(process.env);
