@@ -3,7 +3,7 @@ import { MyContext } from '@/bot/types/context';
 import { setupMiddleware } from '@/bot/middlewares/setup';
 import { startCommand } from '@/bot/commands/start';
 import { helpCommand } from '@/bot/commands/help';
-import { env } from '@/infrastructure/config/env';
+import { env } from '@/config/env';
 
 let botInstance: Telegraf<MyContext> | undefined;
 

@@ -1,8 +1,6 @@
 import { MiddlewareFn } from 'telegraf';
 import { MyContext } from '@/bot/types/context';
-import { formatDate } from '@/core/utils/date';
-
-const botStartedAt = Date.now();
+import { dependencies } from '@/config/dependencies';
 /**
  * Middleware to configure basic metadata in each message's context.
  *
@@ -14,6 +12,7 @@ const botStartedAt = Date.now();
  * @returns {Promise<void>} Promise that resolves when the middleware flow completes.
  */
 export const setupMiddleware: MiddlewareFn<MyContext> = (ctx, next) => {
-  ctx.botStartedAt = formatDate(botStartedAt);
+  ctx.services = dependencies;
+  ctx.botStartedAt = new Date().toISOString();
   return next();
 };
