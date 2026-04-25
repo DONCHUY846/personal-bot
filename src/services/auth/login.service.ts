@@ -1,19 +1,16 @@
 import { IUserRepository } from '@/core/interfaces/repositories/user.repository.interface';
 import { IUserEntity } from '@/core/entities/user.entity';
-import crypto from 'crypto';
 
 export class LoginService {
   constructor(private userRepository: IUserRepository) {}
 
-  async execute(telegramId: number) {
+  async execute(telegramId: bigint) {
     const user = await this.userRepository.findByTelegramId(telegramId);
     if (!user) {
-      const newUser: IUserEntity = {
-        id: crypto.randomUUID(),
+      const newUser: Pick<IUserEntity, 'telegramId' | 'fullName' | 'email'> = {
         telegramId,
-        name: 'New User',
+        fullName: 'New User',
         email: 'new@example.com',
-        createdAt: new Date(),
       };
       await this.userRepository.create(newUser);
       return newUser;

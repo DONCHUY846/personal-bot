@@ -1,7 +1,8 @@
 export interface IUserEntity {
   id: string;
   email?: string;
-  name?: string;
-  telegramId: number;
+  fullName?: string;
+  telegramId: bigint;
   createdAt: Date;
+  updatedAt: Date;
 }
