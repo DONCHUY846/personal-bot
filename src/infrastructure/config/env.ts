@@ -14,7 +14,7 @@ const envSchema = z.object({
       message: 'PORT must be an integer between 1 and 65535',
     })
     .optional(),
-  DATABASE_URL: z.string().url().optional(),
+  DATABASE_URL: z.string().url(),
   JWT_SECRET: nonBlankString.optional(),
   API_KEY: nonBlankString.optional(),
   BOT_TOKEN: nonBlankString,
