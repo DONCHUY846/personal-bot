@@ -27,5 +27,5 @@ jobs:
           bun run knip
           bun run build
         env: 
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_URL: postgresql://postgres:password@localhost:5432/postgres
           NODE_ENV: development
