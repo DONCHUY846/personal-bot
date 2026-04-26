@@ -27,5 +27,5 @@ jobs:
           bun run knip
           bun run build
         env: 
-          DATABASE_URL: postgresql://dummy:dummy@localhost:5432/dummy
+          DATABASE_URL: postgresql://dummy:dummy@localhost:5433/dummy
           NODE_ENV: development
