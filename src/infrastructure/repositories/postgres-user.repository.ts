@@ -44,6 +44,10 @@ export class PostgresUserRepository implements IUserRepository {
       .returning();
 
     const row = rows[0];
+    if (!rows) {
+      throw new Error('User creation failed');
+    }
+
     return {
       id: row.id,
       telegramId: row.telegramId,

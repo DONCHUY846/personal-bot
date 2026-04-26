@@ -5,6 +5,7 @@ import { startCommand } from '@/bot/commands/start';
 import { helpCommand } from '@/bot/commands/help';
 import { registrationWizard } from '@/bot/scenes/registation/registration.wizard';
 import { env } from '@/config/env';
+import { createSessionStore } from '@/infrastructure/telegraf/session-store';
 
 let botInstance: Telegraf<MyContext> | undefined;
 
@@ -30,9 +31,10 @@ export const createBotInstance = (): Telegraf<MyContext> => {
 
   const bot = new Telegraf<MyContext>(env.BOT_TOKEN);
   const stage = new Scenes.Stage<MyContext>([registrationWizard]);
+  const store = createSessionStore<MyContext['session']>();
 
   // Middlewares
-  bot.use(session());
+  bot.use(session({ store }));
   bot.use(setupMiddleware);
   bot.use(stage.middleware());
 

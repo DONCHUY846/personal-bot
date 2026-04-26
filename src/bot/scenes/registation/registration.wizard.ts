@@ -83,23 +83,28 @@ export const registrationWizard = new Scenes.WizardScene<MyContext>(
       return ctx.scene.leave();
     }
 
-    const user = await ctx.services.registerUserService.execute({
-      telegramId: BigInt(telegramId),
-      fullName,
-      email: parsedEmail.data,
-      username: ctx.from?.username,
-      firstName: ctx.from?.first_name,
-      lastName: ctx.from?.last_name,
-    });
+    try {
+      const user = await ctx.services.registerUserService.execute({
+        telegramId: BigInt(telegramId),
+        fullName,
+        email: parsedEmail.data,
+        username: ctx.from?.username,
+        firstName: ctx.from?.first_name,
+        lastName: ctx.from?.last_name,
+      });
 
-    ctx.scene.session.registration = undefined;
+      ctx.scene.session.registration = undefined;
 
-    await ctx.reply(
-      `¡Hola ${user.fullName || 'usuario'}! Bienvenido a tu asistente personal.\n` +
-        `Tu ID de registro es: ${user.telegramId}\n\n` +
-        `Usa /help para ver qué puedo hacer por ti.`,
-    );
-
+      await ctx.reply(
+        `¡Hola ${user.fullName || 'usuario'}! Bienvenido a tu asistente personal.\n` +
+          `Tu ID de registro es: ${user.telegramId}\n\n` +
+          `Usa /help para ver qué puedo hacer por ti.`,
+      );
+    } catch {
+      await ctx.reply('Error: no pude completar tu registro. Intenta de nuevo con /start.');
+    } finally {
+      ctx.scene.session.registration = undefined;
+    }
     return ctx.scene.leave();
   },
 );

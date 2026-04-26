@@ -9,16 +9,17 @@ const startApp = async () => {
     await bot.launch();
     console.log('Bot started successfully');
 
-    process.once('SIGINT', () => {
-      console.log('Stopping bot... (SIGINT)');
-      bot.stop('SIGINT');
-      void closeDatabase();
-    });
-    process.once('SIGTERM', () => {
-      console.log('Stopping bot... (SIGTERM)');
-      bot.stop('SIGTERM');
-      void closeDatabase();
-    });
+    const shutdown = async (signal: 'SIGINT' | 'SIGTERM') => {
+      console.log(`Stopping bot... (${signal})`);
+      bot.stop(signal);
+      try {
+        await closeDatabase();
+      } catch (error) {
+        console.error('Error closing database:', error);
+      }
+    };
+    process.once('SIGINT', () => shutdown('SIGINT'));
+    process.once('SIGTERM', () => shutdown('SIGTERM'));
   } catch (error) {
     console.error('Error starting bot:', error);
     process.exit(1);
