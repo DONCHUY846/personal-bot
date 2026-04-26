@@ -93,14 +93,16 @@ export const registrationWizard = new Scenes.WizardScene<MyContext>(
         lastName: ctx.from?.last_name,
       });
 
-      ctx.scene.session.registration = undefined;
-
       await ctx.reply(
         `¡Hola ${user.fullName || 'usuario'}! Bienvenido a tu asistente personal.\n` +
           `Tu ID de registro es: ${user.telegramId}\n\n` +
           `Usa /help para ver qué puedo hacer por ti.`,
       );
-    } catch {
+    } catch (error) {
+      console.error('[registration.wizard] Error registering user:', {
+        telegramId,
+        error,
+      });
       await ctx.reply('Error: no pude completar tu registro. Intenta de nuevo con /start.');
     } finally {
       ctx.scene.session.registration = undefined;
