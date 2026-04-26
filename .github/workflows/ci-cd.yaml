@@ -26,3 +26,6 @@ jobs:
           bun run lint
           bun run knip
           bun run build
+        env: 
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          NODE_ENV: development
