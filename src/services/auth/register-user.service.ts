@@ -6,7 +6,7 @@ import { IUserEntity } from '@/core/entities/user.entity';
  * Input data required for user registration
  * Combines required Telegram identification with optional profile information
  */
-export interface RegisterUserInput {
+interface RegisterUserInput {
   /** Unique Telegram user identifier */
   telegramId: bigint;
   /** User's full name (required for registration) */
