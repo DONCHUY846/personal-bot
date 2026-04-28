@@ -1,4 +1,4 @@
-# 🤖 Mi Bot Asistente Personal (Telegram)
+# 🤖 Mi Bot Asistente Personal (Telegram) VaneBot
 
 Un bot de Telegram multipropósito diseñado para centralizar mi vida digital. Creado para evitar la fricción de saltar entre múltiples aplicaciones de notas, gestores de tareas y diarios. Si se puede escribir, se puede enviar por Telegram.
 
