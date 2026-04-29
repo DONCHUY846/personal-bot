@@ -13,9 +13,18 @@ export const startCommand = async (ctx: MyContext): Promise<void> => {
 
     if (user?.fullName && user.email) {
       await ctx.reply(
-        `¡Hola ${user.fullName}! Bienvenido a tu asistente personal.\n` +
-          `Tu ID de registro es: ${user.telegramId}\n\n` +
-          `Usa /help para ver qué puedo hacer por ti.`,
+        `🚀 *¡Bienvenido a VaneBot!* \n\n` +
+          `Actualmente me encuentro en *fase de desarrollo*, pero mi objetivo es ser tu central de organización personalizada. \n\n` +
+          `*¿Qué podrás hacer conmigo?* \n\n` +
+          `📂 *Gestión de Recursos:* Organiza información por categorías:\n` +
+          `  • *Apuntes:* Notas rápidas que no quieres olvidar.\n` +
+          `  • *Temas Pendientes:* Contenido para estudiar después.\n` +
+          `  • *TODOs:* Tu lista de tareas clásica.\n` +
+          `  • *Vocabulario:* (Especial) Guarda nuevas palabras y mejora tus idiomas.\n\n` +
+          `⏰ *Gestor de Recordatorios:* \n` +
+          `  Configura avisos, asígnales hora y gestiónalos (activar/desactivar) de forma sencilla.\n\n` +
+          `Usa /help para explorar lo que está disponible actualmente.`,
+        { parse_mode: 'Markdown' },
       );
       return;
     }
